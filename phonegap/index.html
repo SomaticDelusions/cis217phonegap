@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mom and Pops Pizza</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css" />
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
+
+    <style type="text/css">
+        #dark                {
+            display: none;
+            background-color:#000;
+            position:absolute;
+            left:0;
+            top:0;
+            z-index:100;
+        }
+        #message           {
+            display:none;
+            position:fixed;
+            left:0;
+            top:0;
+            z-index:101;
+            background-color:#FFFFFF;
+            border:1px solid #333;
+            -moz-border-radius: 20px;
+            -webkit-border-radius : 20px;
+            padding: 20px;
+            color: #666666;
+        }
+        #darkOrder                {
+            display: none;
+            background-color:#000;
+            position:absolute;
+            left:0;
+            top:0;
+            z-index:100;
+        }
+        #messageOrder           {
+            display:none;
+            position:fixed;
+            left:0;
+            top:0;
+            z-index:101;
+            width: 350px;
+            height: 250px;
+            background-color:#FFFFFF;
+            border:1px solid #333;
+            -moz-border-radius: 20px;
+            -webkit-border-radius : 20px;
+            padding: 20px;
+            color: #666666;
+        }
+    </style>
+</head>
+
+<body>
+
+<div data-role="page" id="home">
+    <div data-role="header" data-id="navbar" data-position="fixed">
+        <div data-role="navbar">
+            <ul>
+                <li>
+                    <a href="#home" class="ui-btn-active ui-state-persist">Home</a>
+                </li>
+                <li>
+                    <a href="#call">Call Us</a>
+                </li>
+                <li>
+                    <a href="#menu">Menu</a>
+                </li>
+                <li>
+                    <a href="#order">Order</a>
+                </li>
+                <li>
+                    <a href="#location">Location</a>
+                </li>
+                <li>
+                    <a href="#about">About Us</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div data-role="content">
+        <p>Welcome to the original Mom and Pop pizza joint</p>
+    </div>
+
+    <div data-role="footer" data-position="fixed">
+        <i>Copyright MakinBaconNeked &copy; 2013</i>
+    </div>
+
+</div>
+
+<div data-role="page" id="call">
+    <div data-role="header" data-id="navbar" data-position="fixed">
+        <div data-role="navbar">
+            <ul>
+                <li>
+                    <a href="#home">Home</a>
+                </li>
+                <li>
+                    <a href="#call" class="ui-btn-active ui-state-persist">Call Us</a>
+                </li>
+                <li>
+                    <a href="#menu">Menu</a>
+                </li>
+                <li>
+                    <a href="#order">Order</a>
+                </li>
+                <li>
+                    <a href="#location">Location</a>
+                </li>
+                <li>
+                    <a href="#about">About Us</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div data-role="content">
+        <p>
+            Questions or Ready to speak with a Phone Rep:
+        </p>
+        <a href="tel:555-555-5555" data-role="button">Call Now</a>
+    </div>
+
+    <div data-role="footer" data-position="fixed">
+        <i>Copyright MakinBaconNeked &copy; 2013</i>
+    </div>
+
+</div>
+
+<div data-role="page" id="menu">
+    <div data-role="header" data-id="navbar" data-position="fixed">
+        <div data-role="navbar">
+            <ul>
+                <li>
+                    <a href="#home">Home</a>
+                </li>
+                <li>
+                    <a href="#call">Call Us</a>
+                </li>
+                <li>
+                    <a href="#menu" class="ui-btn-active ui-state-persist">Menu</a>
+                </li>
+                <li>
+                    <a href="#order">View Order</a>
+                </li>
+                <li>
+                    <a href="#location">Location</a>
+                </li>
+                <li>
+                    <a href="#about">About Us</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div data-role="content">
+
+        <div id="message">
+            <p>Added to Cart</p>
+        </div>
+
+        <div id="dark"></div>
+
+        <h3 id="msg">
+            Available Menu:
+        </h3>
+
+        <div id="viewOrder"><a href="#order" data-role="button">View Order</a></div>
+        <div id="add"></div>
+        <ul data-role="listview" data-inset="true" id="crusts">
+            <li data-role="list-divider">Pizza Crusts:</li>
+            <li>
+                <div data-crust="thinCrust" data-product="101">
+                    <span data-name="Thin Crust" data-price='8.95'>Thin Crust</span>
+                    <span>$8.95</span>
+                </div>
+            </li>
+            <li>
+                <div data-crust="handTossed" data-product="102">
+                    <span data-name="Hand-Tossed" data-price='10.95'>Hand-Tossed</span>
+                    <span>$10.95</span>
+                </div>
+            </li>
+            <li>
+                <div data-crust="deepDish" data-product="103">
+                    <span data-name="Deep Dish" data-price='14.95'>Deep Dish</span>
+                    <span>$14.95</span>
+                </div>
+            </li>
+        </ul>
+
+        <ul data-role="listview" data-inset="true" id="toppings">
+            <li data-role="list-divider">Toppings:</li>
+            <li data-role="list-divider">Meats:</li>
+            <li>
+                <div data-topping="Pepperoni" data-product="106">
+                    <span data-name="Pepperoni">Pepperoni</span>
+                </div>
+            </li>
+            <li>
+                <div data-topping="Ham" data-product="107">
+                    <span data-name="Ham">Ham</span>
+                </div>
+            </li>
+            <li>
+                <div data-topping="Beef" data-product="108">
+                    <span data-name="Beef">Beef</span>
+                </div>
+            </li>
+            <li>
+                <div data-topping="Bacon" data-product="109">
+                    <span data-name="Bacon">Bacon</span>
+                </div>
+            </li>
+            <li>
+                <div data-topping="Chicken" data-product="110">
+                    <span data-name="Chicken">Chicken</span>
+                </div>
+            </li>
+            <li data-role="list-divider">Vegies:</li>
+            <li>
+                <div data-topping="Green Pepper" data-product="111">
+                    <span data-name="Green Pepper">Green Peppers</span>
+                </div>
+            </li>
+            <li>
+                <div data-topping="Onion" data-product="112">
+                    <span data-name="Onion">Onions</span>
+                </div>
+            </li>
+            <li>
+                <div data-topping="Olive" data-product="113">
+                    <span data-name="Olive">Olives</span>
+                </div>
+            </li>
+            <li>
+                <div data-topping="Tomato" data-product="114">
+                    <span data-name="Tomato">Tomatoes</span>
+                </div>
+            </li>
+            <li>
+                <div data-topping="Pineapple" data-product="115">
+                    <span data-name="Pineapple">Pineapple</span>
+                </div>
+            </li>
+            <li>
+                <div data-topping="Mushroom" data-product="116">
+                    <span data-name="Mushroom">Mushrooms</span>
+                </div>
+            </li>
+            <li>
+                <div data-topping="Jalapeno" data-product="117">
+                    <span data-name="Jalapeno">Jalapenos</span>
+                </div>
+            </li>
+            <li data-role="list-divider">Fish:</li>
+            <li>
+                <div data-topping="Anchovy" data-product="118">
+                    <span data-name="Anchovy">Anchovies</span>
+                </div>
+            </li>
+        </ul>
+
+        <ul data-role="listview" data-inset="true" id="drinks">
+            <li data-role="list-divider">Drinks:</li>
+            <li>
+                <div data-drink="pepsi" data-product="123">
+                    <span data-name="Pepsi" data-price='1.99'>Pepsi</span>
+                    <span>$1.99</span>
+                </div>
+            </li>
+            <li>
+                <div data-drink="mtDew" data-product="124">
+                    <span data-name="Mountain Dew" data-price='1.99'>Mountain Dew</span>
+                    <span>$1.99</span>
+                </div>
+            </li>
+            <li>
+                <div data-drink="rootBeer" data-product="125">
+                    <span data-name="Root Beer" data-price='1.99'>Root Beer</span>
+                    <span>$1.99</span>
+                </div>
+            </li>
+            <li>
+                <div data-drink="dietPepsi" data-product="125">
+                    <span data-name="Diet Pepsi" data-price='1.99'>Diet Pepsi</span>
+                    <span>$1.99</span>
+                </div>
+            </li>
+        </ul>
+
+    </div>
+
+    <div data-role="footer" data-position="fixed">
+        <i>Copyright MakinBaconNeked &copy; 2013</i>
+    </div>
+
+</div>
+
+<div data-role="page" id="order">
+
+    <div id="messageOrder">
+        <p>We need a little more information:</p>
+    </div>
+
+    <div id="darkOrder"></div>
+
+    <div data-role="header" data-id="navbar" data-position="fixed">
+        <div data-role="navbar">
+            <ul>
+                <li>
+                    <a href="#home">Home</a>
+                </li>
+                <li>
+                    <a href="#call">Call Us</a>
+                </li>
+                <li>
+                    <a href="#menu">Menu</a>
+                </li>
+                <li>
+                    <a href="#order" class="ui-btn-active ui-state-persist">Order</a>
+                </li>
+                <li>
+                    <a href="#location">Location</a>
+                </li>
+                <li>
+                    <a href="#about">About Us</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div data-role="content">
+        <h3>Orders</h3>
+        <a href="#menu" data-role="button" id="createOrder">Create New Order</a>
+
+        <div id="cart"></div>
+
+        <div>
+            <button id="buy">Buy Now</button>
+        </div>
+
+        <a href="#" data-role="button" id="saveOrder">Save As Favorite Order</a>
+        <a href="#" data-role="button" id="loadOrder">Load Favorite Order</a>
+
+    </div>
+
+    <div data-role="footer" data-position="fixed">
+        <i>Copyright MakinBaconNeked &copy; 2013</i>
+    </div>
+
+</div>
+
+<div data-role="page" id="location">
+    <div data-role="header" data-id="navbar" data-position="fixed">
+        <div data-role="navbar">
+            <ul>
+                <li>
+                    <a href="#home">Home</a>
+                </li>
+                <li>
+                    <a href="#call">Call Us</a>
+                </li>
+                <li>
+                    <a href="#menu">Menu</a>
+                </li>
+                <li>
+                    <a href="#order">Order</a>
+                </li>
+                <li>
+                    <a href="#location" class="ui-btn-active ui-state-persist">Location</a>
+                </li>
+                <li>
+                    <a href="#about">About Us</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div data-role="content">
+        <p>
+            <script>
+                navigator.geolocation.getCurrentPosition(function(pos){
+                    var lat = pos.coords.latitude;
+                    var lng = pos.coords.longitude;
+
+                    var map = '<iframe width="300" height="300" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=d&amp;source=s_d&amp;saddr=' + lat + ',' + lng + '&amp;daddr=Pizza+Hut,+1827+West+Northwest+Boulevard,+Spokane,+WA+99205&amp;hl=en&amp;aq=0&amp;ie=UTF8&amp;t=m&amp;spn=0.008668,0.012832&amp;z=15&amp;output=embed"></iframe><br /><small><a href="https://maps.google.com/maps?f=d&amp;source=embed&amp;saddr=' + lat + ',' + lng + '&amp;daddr=Pizza+Hut,+1827+West+Northwest+Boulevard,+Spokane,+WA+99205&amp;hl=en&amp;aq=0&amp;oq=0&amp;sll=' + lat + ',' + lng + '&amp;sspn=0.021295,0.055747&amp;mra=ls&amp;ie=UTF8&amp;t=m&amp;ll=' + lat + ',' + lng + '&amp;spn=0.008668,0.012832&amp;z=15" style="color:#0000FF;text-align:left">View Larger Map</a></small>';
+
+                    $("#locationMap").html(map);
+                })
+
+            </script>
+        </p>
+        <div id="locationMap"></div>
+    </div>
+
+    <div data-role="footer" data-position="fixed">
+        <i>Copyright MakinBaconNeked &copy; 2013</i>
+    </div>
+
+</div>
+
+<div data-role="page" id="about">
+    <div data-role="header" data-id="navbar" data-position="fixed">
+        <div data-role="navbar">
+            <ul>
+                <li>
+                    <a href="#home">Home</a>
+                </li>
+                <li>
+                    <a href="#call">Call Us</a>
+                </li>
+                <li>
+                    <a href="#menu">Menu</a>
+                </li>
+                <li>
+                    <a href="#order">Order</a>
+                </li>
+                <li>
+                    <a href="#location">Location</a>
+                </li>
+                <li>
+                    <a href="#about" class="ui-btn-active ui-state-persist">About Us</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div data-role="content">
+        <h3>About Us</h3>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean dictum, velit vel egestas vulputate, est velit aliquet dui, et malesuada ante est a augue. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam fringilla ligula vel ipsum tempor consequat. Nam id mi turpis, sed sagittis mi. Sed a congue nibh. Nulla arcu orci, pellentesque laoreet tempor ac, sagittis non nisl. Vivamus vel nunc eget risus faucibus lobortis. Nunc pretium orci et nunc auctor vehicula. Nunc congue velit eget elit laoreet at fermentum lacus interdum. Nulla venenatis sollicitudin ipsum ac rutrum. Nunc eget laoreet elit. Quisque rutrum egestas ante et pharetra. In iaculis ullamcorper sollicitudin.
+        </p>
+    </div>
+
+    <div data-role="footer" data-position="fixed">
+        <i>Copyright MakinBaconNeked &copy; 2013</i>
+    </div>
+
+</div>
+
+<script>
+    var cartArray = [];
+    var item = '';
+    var pizza = '';
+
+    function displayCart() {
+        var grandTotal = 0;
+        var cartDiv = $('#cart');
+
+        cartDiv.html("");
+        cartDiv.append('<ul data-role="listview" data-inset="true" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">');
+        cartDiv.append('<li data-role="list-divider" role="heading" class="ui-li ui-li-divider ui-bar-b ui-first-child">Your Order:</li>');
+
+        for (var item in cartArray) {
+            var qty = cartArray[item].qty;
+            var price = cartArray[item].price;
+            var name = cartArray[item].name;
+            var subtotal = qty * price;
+            grandTotal += subtotal
+            cartDiv.append('<li class="ui-li ui-li-static ui-btn-up-c ui-li-has-count">' + name + '<span class="ui-li-count ui-btn-up-c ui-btn-corner-all">' + qty + ' at $' + price.toFixed(2) + '</span></li>');
+        }
+
+        cartDiv.append('<li data-role="list-divider" role="heading" class="ui-li ui-li-divider ui-bar-b ui-li-has-count ui-last-child">Grand Total:<span class="ui-li-count ui-btn-up-c ui-btn-corner-all">$' + grandTotal.toFixed(2) + '</span></li>');
+        cartDiv.append('</ul');
+
+        $('#viewOrder').show();
+    }
+
+    function msgAdd() {
+        var WindowHeight = $(window).height();
+        var WindowWidth = $(window).width();
+        var DocHeight = $(document).height();
+        $('#dark').css({'width':WindowWidth,'height':DocHeight});
+        $('#dark').fadeTo(500,0.75).delay(500).fadeOut(500);
+        $('#message').css('top',  WindowHeight/2-$('#message').height()/2);
+        $('#message').css('left', WindowWidth/2-$('#message').width()/2);
+        $('#message').fadeIn(500).delay(500).fadeOut(500);
+    }
+
+    function buyMsg(data) {
+        $('#messageOrder').append(data);
+        var WindowHeight = $(window).height();
+        var WindowWidth = $(window).width();
+        var DocHeight = $(document).height();
+        $('#darkOrder').css({'width':WindowWidth,'height':DocHeight});
+        $('#darkOrder').fadeTo(500,0.75);
+        $('#messageOrder').css('top',  WindowHeight/2-$('#messageOrder').height()/2);
+        $('#messageOrder').css('left', WindowWidth/2-$('#messageOrder').width()/2);
+        $('#messageOrder').fadeIn(500)
+
+        $('#darkOrder').on("click", function() {
+            $('#darkOrder').fadeOut();
+            $('#messageOrder').fadeOut();
+            $('#messageOrder').find('form').remove();
+        })
+    }
+
+    $(document).ready(function() {
+        $('#viewOrder').hide();
+        //$('#saveOrder').hide();
+        $('#toppings').hide();
+        $('#info').text("Select Crust");
+        $('#currentCrust').text();
+        $('#currentToppings').text();
+
+        $('div[data-crust]').each(function() {
+            $(this).append('<button class="btnCrust">Select Crust</button>');
+        })
+
+        $('div[data-topping]').each(function() {
+            $(this).append('<button class="btnTopping">Add Topping</button>');
+        })
+
+        $('div[data-drink]').each(function() {
+            $(this).append('<button class="btnDrink">Add Drink</button>')
+        })
+
+        $('#createOrder').on("click", function() {
+            $('#cart').html("");
+            $('#viewOrder').hide();
+            cartArray.length = 0;
+        })
+
+        $('.btnCrust').on("click", function(evt) {
+            $('#crusts').hide();
+            $('#drinks').hide();
+            $('#viewOrder').hide();
+            $('#toppings').show();
+
+            item = $(this).parent().siblings('span').data('name') + ': ';
+            var itemPrice = $(this).parent().siblings('span').data('price');
+            pizza = $(this).parent().parent().data('product').toString();
+
+            $('#msg').text(item);
+            $("#add").append('<button class="addPizza">Add Pizza to Order</button>');
+
+            $('.addPizza').on("click", function() {
+                var pid = pizza;
+
+                if (cartArray[pid]) {
+                    cartArray[pid].qty += 1;
+                } else {
+                    cartArray[pid] = new Object();
+                    cartArray[pid].pid = pid
+                    cartArray[pid].qty = 1;
+                    cartArray[pid].name = item;
+                    cartArray[pid].price = itemPrice;
+                }
+
+                $('.btnTopping').each( function(){
+                    $(this).parent().show();
+                })
+                $('#msg').text("Available Menu:")
+                $('#toppings').hide();
+                $('#drinks').show();
+                $('#crusts').show();
+                $('.addPizza').remove();
+                $('#viewOrder').show();
+
+                displayCart();
+                msgAdd();
+            })
+        })
+
+        $('.btnDrink').on("click", function(evt) {
+            var pid = $(this).parent().parent().data('product');
+
+            if (cartArray[pid]) {
+                cartArray[pid].qty += 1;
+            } else {
+                cartArray[pid] = new Object();
+                cartArray[pid].pid = pid
+                cartArray[pid].qty = 1;
+                cartArray[pid].name = $(this).parent().siblings('span').data('name');
+                cartArray[pid].price = $(this).parent().siblings('span').data('price');
+            }
+
+            displayCart();
+            msgAdd();
+        })
+
+        $('.btnTopping').on("click", function(evt) {
+            item += $(this).parent().siblings('span').data('name') + ' ';
+            pizza += $(this).parent().parent().data('product').toString();
+            pizza = parseInt(pizza);
+            $('#msg').text(item);
+
+            $(this).parent().hide();
+        })
+
+        $('#saveOrder').on("click", function(evt) {
+            var cartStr = "[";
+            for (var item in cartArray) {
+                cartStr += JSON.stringify(cartArray[item]) + ",";
+            }
+            cartStr = cartStr.slice(0,-1);
+            cartStr += "]";
+
+            localStorage['favOrder'] = cartStr;
+        })
+
+        $('#loadOrder').on("click", function() {
+            cartArray = [];
+            var obj = JSON.parse( localStorage['favOrder'] );
+            for (item in obj) {
+                pid = obj[item].pid;
+                cartArray[pid] = obj[item];
+                console.log(pid);
+            }
+            displayCart();
+        })
+
+        $('#buy').on("click", function(evt) {
+            var buyUrl = "";
+            for (var item in cartArray) {
+                buyUrl += "&pid[]=" + item + "&qty[]=" + cartArray[item].qty;
+            }
+
+            $.getJSON('buy.php?' + buyUrl, function(data) {
+                buyMsg(data);
+            })
+        })
+    })
+</script>
+
+</body>
+</html>
