@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.css" />
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.3.1/jquery.mobile-1.3.1.min.js"></script>
-    <script type="text/javascript" charset="utf-8" src="js/cordova.js"></script>
+    <!--<script type="text/javascript" charset="utf-8" src="js/cordova.js"></script>-->
 
     <style type="text/css">
         #dark                {
@@ -77,9 +77,9 @@
         //
         function showAlert() {
             navigator.notification.alert(
-                    'You are the winner!',  // message
+                    'Order Saved to phone.',  // message
                     alertDismissed,         // callback
-                    'Game Over',            // title
+                    'Save Order',            // title
                     'Done'                  // buttonName
             );
         }
@@ -377,7 +377,7 @@
             <button id="buy">Buy Now</button>
         </div>
 
-        <a href="#" data-role="button" id="saveOrder" onclick="showAlert(); return false">Save As Favorite Order</a>
+        <a href="#" data-role="button" id="saveOrder">Save As Favorite Order</a>
         <a href="#" data-role="button" id="loadOrder">Load Favorite Order</a>
 
     </div>
@@ -628,13 +628,7 @@
 
         $('#saveOrder').on("click", function(evt) {
 
-            /* add phone api integration from PhoneGap here
-
-
-
-             */
-
-            alert("order saved");
+            // add phone api integration from PhoneGap here
 
             /*var cartStr = "[";
             for (var item in cartArray) {
@@ -644,6 +638,9 @@
             cartStr += "]";
 
             localStorage['favOrder'] = cartStr;*/
+
+            showAlert();
+            return false;
         })
 
         $('#loadOrder').on("click", function() {
