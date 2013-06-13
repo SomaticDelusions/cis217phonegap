@@ -57,7 +57,7 @@
         }
     </style>
 
-    <script type="text/javascript" charset="utf-8">
+    <!--<script type="text/javascript" charset="utf-8">
 
         // Wait for Cordova to load
         //
@@ -85,7 +85,7 @@
             );
         }
 
-    </script>
+    </script>-->
 </head>
 
 <body>
@@ -640,7 +640,14 @@
 
             // add phone api integration from PhoneGap here
 
-            showAlert();
+            navigator.notification.alert(
+                    'Order Saved to phone.',  // message
+                    alertDismissed,         // callback
+                    'Save Order',            // title
+                    'Done'                  // buttonName
+            );
+
+            //showAlert();
             return false;
         })
 
@@ -669,6 +676,28 @@
                 buyMsg(data);
             })
         })
+
+        function alertDismissed() {
+            // no functionality required when dismissed.
+        }
+
+        /*
+         // alert dialog dismissed
+         function alertDismissed() {
+         // do something
+         }
+
+         // Show a custom alertDismissed
+         //
+         function showAlert() {
+         navigator.notification.alert(
+         'Order Saved to phone.',  // message
+         alertDismissed,         // callback
+         'Save Order',            // title
+         'Done'                  // buttonName
+         );
+         }
+         */
     })
 </script>
 
