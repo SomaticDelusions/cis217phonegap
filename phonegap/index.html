@@ -661,7 +661,11 @@
                 buyUrl += "&pid[]=" + item + "&qty[]=" + cartArray[item].qty;
             }
 
-            $.getJSON('buy.php?' + buyUrl, function(data) {
+            /*$.getJSON('buy.php?' + buyUrl, function(data) {
+                buyMsg(data);
+            })*/
+
+            $.getJSON('http://cis217-4.makinbaconneked.com/buy.php?' + buyUrl, function(data) {
                 buyMsg(data);
             })
         })
