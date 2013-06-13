@@ -55,6 +55,36 @@
             color: #666666;
         }
     </style>
+
+    <script type="text/javascript" charset="utf-8">
+
+        // Wait for Cordova to load
+        //
+        document.addEventListener("deviceready", onDeviceReady, false);
+
+        // Cordova is ready
+        //
+        function onDeviceReady() {
+            // Empty
+        }
+
+        // alert dialog dismissed
+        function alertDismissed() {
+            // do something
+        }
+
+        // Show a custom alertDismissed
+        //
+        function showAlert() {
+            navigator.notification.alert(
+                    'You are the winner!',  // message
+                    alertDismissed,         // callback
+                    'Game Over',            // title
+                    'Done'                  // buttonName
+            );
+        }
+
+    </script>
 </head>
 
 <body>
@@ -347,7 +377,7 @@
             <button id="buy">Buy Now</button>
         </div>
 
-        <a href="#" data-role="button" id="saveOrder">Save As Favorite Order</a>
+        <a href="#" data-role="button" id="saveOrder" onclick="showAlert(); return false">Save As Favorite Order</a>
         <a href="#" data-role="button" id="loadOrder">Load Favorite Order</a>
 
     </div>
@@ -597,14 +627,23 @@
         })
 
         $('#saveOrder').on("click", function(evt) {
-            var cartStr = "[";
+
+            /* add phone api integration from PhoneGap here
+
+
+
+             */
+
+            alert("order saved");
+
+            /*var cartStr = "[";
             for (var item in cartArray) {
                 cartStr += JSON.stringify(cartArray[item]) + ",";
             }
             cartStr = cartStr.slice(0,-1);
             cartStr += "]";
 
-            localStorage['favOrder'] = cartStr;
+            localStorage['favOrder'] = cartStr;*/
         })
 
         $('#loadOrder').on("click", function() {
