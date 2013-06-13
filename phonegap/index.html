@@ -629,16 +629,16 @@
 
         $('#saveOrder').on("click", function(evt) {
 
-            // add phone api integration from PhoneGap here
-
-            /*var cartStr = "[";
+            var cartStr = "[";
             for (var item in cartArray) {
                 cartStr += JSON.stringify(cartArray[item]) + ",";
             }
             cartStr = cartStr.slice(0,-1);
             cartStr += "]";
 
-            localStorage['favOrder'] = cartStr;*/
+            localStorage['favOrder'] = cartStr;
+
+            // add phone api integration from PhoneGap here
 
             showAlert();
             return false;
